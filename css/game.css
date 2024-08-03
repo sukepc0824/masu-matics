@@ -163,6 +163,8 @@ dialog.clear button.next {
     align-items: end;
     justify-content: end;
     color: #575757;
+    text-wrap: nowrap;
+    overflow: hidden;
     font-size: 86px;
     font-weight: 300;
     padding: 6px;
@@ -218,8 +220,8 @@ td .box {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 84px;
-    height: 84px;
+    width: 88px;
+    height: 88px;
     background-color: white;
     border-radius: 6px;
     pointer-events: none;
@@ -258,7 +260,7 @@ td.enter {
     background-color: #222;
 }
 
-@media screen and (max-width:382px) {
+@media screen and (max-width:402px) {
     main {
         width: 100%;
         padding: 2px;
@@ -292,42 +294,6 @@ dialog.game .box-line {
     position: absolute;
     pointer-events: none;
     background-color: #ff8000;
-}
-
-.container[data-level="2"] .sizebox.clear::before {
-    background-color: #5B9736;
-}
-
-dialog.game.level2 td.select .box {
-    background-color: #5B9736;
-}
-
-dialog.game.level2 td.start::after {
-    background-color: #5B9736;
-}
-
-dialog.game.level2 .box-line {
-    background-color: #5B9736;
-    position: absolute;
-    pointer-events: none;
-}
-
-.container[data-level="3"] .sizebox.clear::before {
-    background-color: #3C78A4;
-}
-
-dialog.game.level3 td.select .box {
-    background-color: #3C78A4;
-}
-
-dialog.game.level3 td.start::after {
-    background-color: #3C78A4;
-}
-
-dialog.game.level3 .box-line {
-    position: absolute;
-    pointer-events: none;
-    background-color: #3C78A4;
 }
 
 td.start.select::after {

@@ -162,7 +162,7 @@ class Table {
         })
         this.reset()
         this.variable_update(true)
-        $(`dialog.game`).addClass('level' + Number(Math.floor(this.goal_value / 16) + 1))
+        $(`dialog.game`).addClass('level' + Number(Math.floor((this.goal_value - 1) / 16) + 1))
     }
 
     variable_update(noAnimation) {
@@ -425,6 +425,7 @@ $("dialog.create button.create").on("click", function () {
         [stage[8], stage[9], stage[10], stage[11]],
         [stage[12], stage[13], stage[14], stage[15]],
     ], "share")
+    console.log(JSON.stringify(table.table_data))
     table.create()
 })
 

@@ -140,7 +140,6 @@ main .top .title img {
     border: 1px solid #ddd;
 }
 
-
 main .top .action {
     display: flex;
     flex-direction: column;
@@ -195,7 +194,7 @@ main .top button img {
 
 .action {
     flex-grow: 1 !important;
-    max-width: 370px;
+    max-width: 390px;
     max-height: 4;
     padding: 0;
     width: 100%;
@@ -207,7 +206,7 @@ main .top button img {
 
 main {
     width: 100%;
-    max-width: 370px;
+    max-width: 390px;
     color: #222;
     position: relative;
 }
@@ -238,8 +237,8 @@ main {
     border-radius: 7px;
     text-align: center;
     font-size: 20px;
-    width: 92px;
-    height: 92px;
+    width: 96px;
+    height: 96px;
     position: relative;
 }
 
@@ -256,9 +255,9 @@ main button.gamestart p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 84px;
+    width: 88px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
-    height: 84px;
+    height: 88px;
     background-color: white;
 }
 
@@ -373,7 +372,7 @@ dialog.create button.create {
     border: 1px solid #d2d2d2;
 }
 
-@media screen and (max-width:382px) {
+@media screen and (max-width:402px) {
     main {
         width: 100%;
         padding: 2px;
