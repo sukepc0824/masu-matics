@@ -10,7 +10,7 @@ dialog table {
     border-collapse: collapse;
     margin-bottom: 47px;
     transform-origin: center bottom;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.39s cubic-bezier(0,.01,.36,1.15);
 }
 
 dialog.clear table {
