@@ -8,7 +8,7 @@ dialog table {
     position: relative;
     margin: auto;
     border-collapse: collapse;
-    margin-bottom: 42px;
+    margin-bottom: 47px;
     transform-origin: center bottom;
     transition: transform 0.5s ease-in-out;
 }
@@ -38,7 +38,7 @@ dialog.clear table {
     animation: reduction-show 0.1s ease-in forwards;
 }
 
-.show-panel .fail {
+.fail {
     animation: fail 0.7s ease-out forwards !important;
 }
 
@@ -132,19 +132,19 @@ dialog.clear button.next {
     }
 
     10% {
-        transform: translateX(-20px);
+        transform: translateX(-16px);
     }
 
     22% {
-        transform: translateX(16px);
+        transform: translateX(12px);
     }
 
     30% {
-        transform: translateX(-10px);
+        transform: translateX(-8px);
     }
 
     40% {
-        transform: translateX(10px);
+        transform: translateX(7px);
     }
 
     50% {
@@ -260,7 +260,7 @@ td.enter {
     background-color: #222;
 }
 
-@media screen and (max-width:402px) {
+@media screen and (max-width:392px) {
     main {
         width: 100%;
         padding: 2px;
@@ -282,11 +282,11 @@ td.enter {
     }
 
     .show-panel {
-        font-size: 77px;
+        font-size: 82px;
     }
 
     table {
-        margin-bottom: 22px;
+        margin-bottom: 40px;
     }
 }
 

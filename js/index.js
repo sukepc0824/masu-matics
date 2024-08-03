@@ -44,7 +44,9 @@ class Table {
     constructor(table_data, option) {
         this.table_data = table_data;
         this.goal_value = 0;
-        this.option = option
+        this.option = option;
+        this.audio_fail = new Audio('./sounds/fail.mp3');
+        this.audio_next = new Audio('./sounds/next.mp3');
     }
     get data() {
         return {
@@ -212,13 +214,16 @@ class Table {
     fail() {
         $(".box-line").remove()
         $("td").removeClass("select")
-        $(".calc_result").addClass("fail")
+        $(".show-panel,table").addClass("fail")
         setTimeout(() => {
-            $(".calc_result").removeClass("fail")
+            $(".show-panel,table").removeClass("fail")
         }, 500);
         this.variable_update(true)
         selected = []
         new TableCel($(`td.start`).data("positionId")).select()
+        this.audio_fail.preload = 'metadata';
+        this.audio_fail.currentTime = 0;
+        this.audio_fail.play()
         window.navigator.vibrate(100);
     }
 
@@ -250,6 +255,9 @@ class Table {
                 clear_tables_update()
             }
         }
+        this.audio_next.preload = 'metadata';
+        this.audio_next.currentTime = 0;
+        this.audio_next.play()
     }
 }
 class TableCel {
