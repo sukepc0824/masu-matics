@@ -228,7 +228,7 @@ class Table {
     }
 
     goal() {
-        if (this.goal_value == Number(lastSelected().calc_variable)) {
+        if (this.goal_value === Number(lastSelected().calc_variable)&& selected[selected.length - 1].id === $("selected.clear").data("positionId")) {
             this.clear()
         } else {
             this.fail()
