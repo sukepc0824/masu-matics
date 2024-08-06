@@ -228,7 +228,7 @@ class Table {
     }
 
     goal() {
-        if (this.goal_value === Number(lastSelected().calc_variable)&& selected[selected.length - 1].id === $("td.goal").data("positionId")) {
+        if (this.goal_value === Number(lastSelected().calc_variable) && String(selected[selected.length - 1].id) === String($("td.goal").data("positionId"))) {
             this.clear()
         } else {
             this.fail()
@@ -243,7 +243,7 @@ class Table {
                     url: 'https://sukepc0824.github.io/masu-matics/created.html?stage=' + deflate(JSON.stringify(this.table_data)),
                 })
                     .then(() => console.log('Shared successfully'))
-                    .catch((error) => alert("お使いのブラウザーは対応していません。"+error))
+                    .catch((error) => alert("お使いのブラウザーは対応していません。" + error))
             }
             this.reset()
         } else {
