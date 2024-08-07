@@ -24,7 +24,7 @@ function inflate(val) {
 let snd = new Howl({
     src: ['./sounds/select.mp3'],
     loop: false,// 繰り返し再生をする/しない
-    volume: 1.0,// 音量(0.0 ~ 1.0)
+    volume: 0.9,// 音量(0.0 ~ 1.0)
 });
 
 if (localStorage.hasOwnProperty("clear_tables")) {
