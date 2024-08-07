@@ -23,19 +23,19 @@ dialog.clear table {
 }
 
 .show-panel span.addition-hide {
-    animation: addition-hide 0.1s ease-in forwards !important;
+    animation: addition-hide 0.1s ease-out forwards !important;
 }
 
 .show-panel span.addition-show {
-    animation: addition-show 0.1s ease-in forwards;
+    animation: addition-show 0.1s ease-out forwards;
 }
 
 .show-panel span.reduction-hide {
-    animation: reduction-hide 0.1s ease-in forwards !important;
+    animation: reduction-hide 0.1s ease-out forwards !important;
 }
 
 .show-panel span.reduction-show {
-    animation: reduction-show 0.1s ease-in forwards;
+    animation: reduction-show 0.1s ease-out forwards;
 }
 
 .fail {
@@ -180,7 +180,7 @@ dialog.clear button.next {
 
     100% {
         opacity: 0;
-        transform: translateY(2.5px);
+        transform: translateY(4px);
         filter: blur(2px);
     }
 }
