@@ -307,7 +307,6 @@ const se = new Se($("body"), "./sounds/select.mp3", 1)
 class TableCel {
     constructor(id) {
         this.id = id
-        this.audio = new Audio('./sounds/select.mp3');
     }
     select() {
         $(".box-line").remove()
