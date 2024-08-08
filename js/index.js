@@ -22,17 +22,17 @@ let audio = {
     select: new Howl({
         src: ['./sounds/select.mp3'],
         loop: false,
-        volume: 0.9,
+        volume: 0.7,
     }),
     fail: new Howl({
         src: ['./sounds/fail.mp3'],
         loop: false,
-        volume: 0.9,
+        volume: 0.5,
     }),
     next: new Howl({
         src: ['./sounds/next.mp3'],
         loop: false,
-        volume: 0.9,
+        volume: 0.5,
     })
 }
 
@@ -272,7 +272,11 @@ class Table {
             this.reset()
         } else {
             $("dialog.game").addClass("clear")
-            $(`button.gamestart[value=${this.data.goal_value}]`).addClass("clear")
+            if(this.goal_value === 40){
+                $("dialog.game button.next").hide()
+            } else {
+                $("dialog.game button.next").show()
+            }
             if (!clear_tables.includes(Number(this.goal_value))) {
                 clear_tables.push(Number(this.goal_value))
                 localStorage.setItem("clear_tables", JSON.stringify(clear_tables))
