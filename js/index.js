@@ -22,7 +22,7 @@ let audio = {
     select: new Howl({
         src: ['./sounds/select.mp3'],
         loop: false,
-        volume: 0.7,
+        volume: 0.6,
     }),
     fail: new Howl({
         src: ['./sounds/fail.mp3'],
