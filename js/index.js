@@ -2,30 +2,39 @@
 let selected = []
 let calc_values = []
 let clear_tables = []
-let calc_progress = []
-let that;
+let that; //Class Tableに使用
 
-// 圧縮関数 (要deflate.js)
 function deflate(val) {
-    val = encodeURIComponent(val); // UTF16 → UTF8
-    val = RawDeflate.deflate(val); // 圧縮
-    val = btoa(val); // base64エンコード
+    val = encodeURIComponent(val)
+    val = RawDeflate.deflate(val)
+    val = btoa(val)
     return val;
 }
 
-// 復号関数 (要inflate.js)
 function inflate(val) {
-    val = atob(val); // base64デコード
-    val = RawDeflate.inflate(val); // 復号
-    val = decodeURIComponent(val); // UTF8 → UTF16
+    val = atob(val)
+    val = RawDeflate.inflate(val)
+    val = decodeURIComponent(val)
     return val;
 }
 
-let snd = new Howl({
-    src: ['./sounds/select.mp3'],
-    loop: false,// 繰り返し再生をする/しない
-    volume: 0.9,// 音量(0.0 ~ 1.0)
-});
+let audio = {
+    select: new Howl({
+        src: ['./sounds/select.mp3'],
+        loop: false,
+        volume: 0.9,
+    }),
+    fail: new Howl({
+        src: ['./sounds/fail.mp3'],
+        loop: false,
+        volume: 0.9,
+    }),
+    next: new Howl({
+        src: ['./sounds/next.mp3'],
+        loop: false,
+        volume: 0.9,
+    })
+}
 
 if (localStorage.hasOwnProperty("clear_tables")) {
     clear_tables = JSON.parse(localStorage.getItem("clear_tables"))
@@ -55,8 +64,6 @@ class Table {
         this.table_data = table_data;
         this.goal_value = 0;
         this.option = option;
-        this.audio_fail = new Audio('./sounds/fail.mp3');
-        this.audio_next = new Audio('./sounds/next.mp3');
     }
     get data() {
         return {
@@ -154,8 +161,9 @@ class Table {
             }
         })
 
-        $(document).on("mouseup", "td", function () {
+        $(document).on("mouseup", "td", function (event) {
             dragging = false
+            let target = $(document.elementFromPoint(event.clientX, event.clientY));
             if ((Math.abs(selected.map((obj) => obj.x)[selected.length - 1] - $(this).data("positionX")) + Math.abs(selected.map((obj) => obj.y)[selected.length - 1] - $(this).data("positionY")) <= 1)) {
                 if (selected.map(obj => obj.id).includes(String($("td.goal").data("positionId")))) {
                     that.goal()
@@ -172,6 +180,14 @@ class Table {
                 }
             }
         })
+
+        $("dialog.game").on("touchend mouseup", function () {
+            if (dragging === true && String(selected[selected.length - 1].id) === String($("td.goal").data("positionId"))) {
+                that.goal()
+            }
+            dragging = false
+        })
+
         this.reset()
         this.variable_update(true)
         $(`dialog.game`).addClass('level' + Number(Math.floor((this.goal_value - 1) / 16) + 1))
@@ -231,9 +247,7 @@ class Table {
         this.variable_update(true)
         selected = []
         new TableCel($(`td.start`).data("positionId")).select()
-        this.audio_fail.preload = 'metadata';
-        this.audio_fail.currentTime = 0;
-        this.audio_fail.play()
+        audio.fail.play()
         window.navigator.vibrate(100);
     }
 
@@ -265,9 +279,7 @@ class Table {
                 clear_tables_update()
             }
         }
-        this.audio_next.preload = 'metadata';
-        this.audio_next.currentTime = 0;
-        this.audio_next.play()
+        audio.next.play()
     }
 }
 
@@ -287,7 +299,7 @@ class TableCel {
             selected.splice(selected.map(obj => obj.id).indexOf(this.id) + 1)
         } else {
             if (selected.length != 0) {
-                snd.play()
+                audio.select.play()
             }
             if ($target.hasClass("goal")) {
                 selected.push({
