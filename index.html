@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マスmatics</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="js/stage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/rawdeflate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/game.css">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.webmanifest" />
+</head>
+
+<body>
+    <dialog class="create">
+        <div class="content">
+            <div class="dialog-menu">
+                <form method="dialog">
+                    <button onclick="bodyScroll.fixed(false);">
+                        <img src="img/icon/close.svg" alt="">
+                    </button>
+                </form>
+            </div>
+            <div class="action" style="display: flex; flex-wrap: wrap; flex-direction: row;flex-grow: unset;">
+                <form class="create" style="display: flex;flex-direction: column;align-items: center;">
+                    <button class="reset" type="reset">
+                        <img src="./img/icon/reset.svg" alt="reset">RESET
+                    </button>
+                    <div class="container"></div>
+                    <button class="create" type="button">Play and Share</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+    <dialog class="game_rule">
+        <div class="dialog-menu">
+            <form method="dialog">
+                <button onclick="bodyScroll.fixed(false)">
+                    <img src="img/icon/close.svg" alt="">
+                </button>
+            </form>
+        </div>
+        <div class="action">
+            <h2>ゲームルール</h2>
+            <p>4x4のマスをなぞる、もしくはタップ・クリックして操作します。マスにある計算式を拾って、=のマスの数と一致すればクリアです。全てのマスを通る必要はありませんが、同じマスは1度しか通れません。</p>
+            <br>
+            <h2>記号の説明</h2>
+            <ul>
+                <li><span>+</span>...足す（和）</li>
+                <li><span>-</span>...引く（差）</li>
+                <li><span>×</span>...かける（積）</li>
+                <li><span>÷</span>...割る（商）</li>
+                <li><span>^</span>...べき乗（冪）</li>
+                <li><span>%</span>...余り（法）</li>
+            </ul>
+        </div>
+    </dialog>
+    <dialog class="game">
+        <div class="content">
+            <div class="action">
+                <div class="dialog-menu">
+                    <form method="dialog">
+                        <button onclick="bodyScroll.fixed(false)">
+                            <img src="img/icon/close.svg" alt="">
+                        </button>
+                    </form>
+                </div>
+                <div class="show-panel">
+                    <div class="calc_progress">
+                    </div>
+                    <div class="calc_result">
+                        <span></span>
+                    </div>
+                </div>
+                <table>
+                    <tbody>
+                    </tbody>
+                </table>
+                <button class="next">
+                    <img src="img/icon/arrow.svg" alt="">
+                    <p>NEXT STAGE</p>
+                </button>
+            </div>
+            <div class="hint">
+                <img src="./img/ui/finger.svg" alt="人差し指">
+                <p>オレンジ色のマスから<br>ゴールまでをなぞって<br>=のマスと一致させよう</p>
+            </div>
+        </div>
+    </dialog>
+    <main>
+        <div class="top">
+            <div class="title">
+                <img src="./img/icon/app.svg" alt="">
+                <h1>マスmatics</h1>
+                <p>マスをなぞって計算しよう<br>
+                    <button onclick="$('dialog.game_rule')[0].show();bodyScroll.fixed(true)">
+                        ゲームルール...
+                    </button>
+                </p>
+            </div>
+            <div class="action">
+                <button class="play">
+                    <img src="img/icon/play.svg">
+                    Play</button>
+                <button class="create" onclick="$('dialog.create')[0].showModal();bodyScroll.fixed(true)">
+                    <img src="img/icon/create.svg" alt="">
+                    Create</button>
+            </div>
+        </div>
+        <img src="img/ui/border.svg" alt="" style="width: 100%; opacity: 0.63;">
+        <div class="progress">
+            <p class="number"></p>
+            <p class="per"></p>
+        </div>
+        <div class="menu" style="display: flex; align-items: center; flex-direction: column;">
+            <p>LEVEL 1 (四則演算)</p>
+            <div class="container" data-level="1">
+            </div>
+            <p>LEVEL 2 (四則演算 , ^べき乗)</p>
+            <div class="container" data-level="2">
+            </div>
+            <p>LEVEL 3 (四則演算 , ^べき乗 , %あまり)</p>
+            <div class="container" data-level="3">
+                <div class="overlay">
+                    <div class="content">
+                        <p>レベル1,2を全クリアで解放</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Kizaki</p><button onclick="localStorage.clear();location.reload();" style="color: red;">(Game
+            Reset)</button>
+    </footer>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

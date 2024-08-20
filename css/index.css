@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap');
+
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f1f1f1;
+    overscroll-behavior-y: none;
+    font-family: "Space Grotesk", "Noto Sans JP", sans-serif;
+    color: #222;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+@media screen and (pointer: coarse) {
+    @supports (-webkit-backdrop-filter: blur(1px)) and (overscroll-behavior-y: none) {
+        html {
+            min-height: 100.3%;
+            overscroll-behavior-y: none;
+        }
+    }
+}
+
+/* prevent pull-to-refresh for Safari 9~15 */
+@media screen and (pointer: coarse) {
+    @supports (-webkit-backdrop-filter: blur(1px)) and (not (overscroll-behavior-y: none)) {
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0px;
+            max-height: 100%;
+            /* or `height: calc(100% - 16px);` if body has default margin */
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* in this case to disable pinch-zoom, set `touch-action: pan-x pan-y;` on `body` instead of `html` */
+    }
+}
+
+main button.game_rule{
+    position: absolute;
+    opacity: 0.5;
+    right: 16px;
+    top: 16px;
+}
+
+main button.game_rule img{
+    width: 30px;
+}
+
+dialog {
+    padding: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background: #f1f1f1;
+    color: #222;
+    align-items: center;
+    user-select: none !important;
+    border: none !important;
+    outline: none !important;
+    overflow: hidden;
+    z-index: 1000;
+    transition: all 0.3s ease-out;
+    top: 100%;
+    margin: 0;
+    overscroll-behavior: contain;
+}
+
+dialog.game_rule {
+    padding: 10px;
+}
+
+dialog .content {
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+}
+
+dialog[open] {
+    top: 0 !important;
+    opacity: 1;
+}
+
+.dialog-menu {
+    max-width: 470px;
+    width: 100%;
+    z-index: 100;
+}
+
+.dialog-menu h2 {
+    font-weight: 600;
+    font-size: 41px;
+}
+
+.dialog-menu button {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 15px;
+    padding: 22px;
+}
+
+.dialog-menu button img {
+    opacity: 0.32;
+    width: 40px;
+}
+
+.dialog-menu button:hover {
+    filter: brightness(0%);
+}
+
+main .top h1 {
+    font-size: 40px;
+    line-height: 0.8;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: -0.05rem;
+}
+
+main .top {
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 45px;
+}
+
+main .top .title img {
+    border: 1px solid #ddd;
+}
+
+main .top .action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+main .action button {
+    width: 80%;
+    padding: 14px;
+    text-align: center;
+    font-size: 22px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d2d2d2;
+}
+
+main .top button.play {
+    color: white;
+    background-color: #555555;
+}
+
+main .top button img {
+    width: 16px;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+
+.title p {
+    opacity: 0.7;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.title img {
+    width: 114px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 16px 18px -10px;
+    border-radius: 29px;
+    margin-bottom: 10px;
+}
+
+.action {
+    flex-grow: 1 !important;
+    max-width: 390px;
+    max-height: 4;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+main {
+    width: 100%;
+    max-width: 390px;
+    color: #222;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container .overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffffb7;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    font-size: 18px;
+    backdrop-filter: contrast(85%);
+}
+
+.sizebox {
+    border-radius: 7px;
+    text-align: center;
+    font-size: 20px;
+    width: 96px;
+    height: 96px;
+    position: relative;
+}
+
+main button.gamestart p {
+    font-size: 24px;
+    color: #515151;
+}
+
+.sizebox::before {
+    z-index: -1;
+    content: '';
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 88px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
+    height: 88px;
+    background-color: white;
+}
+
+main button.gamestart.clear p {
+    color: #fff;
+}
+
+main button.gamestart.clear::before {
+    background-color: #ff8000;
+}
+
+.progress {
+    margin-top: 26px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px;
+}
+
+.progress span {
+    font-size: 22px;
+    opacity: 0.7;
+}
+
+.game_rule h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 12px 0;
+}
+
+.game_rule li {
+    font-size: 18px;
+    margin: 4px;
+}
+
+.game_rule li span {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.game_rule p {
+    line-height: normal;
+}
+
+.menu>p {
+    margin: 8px;
+    margin-top: 40px;
+    margin-bottom: 8px;
+}
+
+dialog.create button.reset {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    opacity: 0.7;
+    padding: 4px;
+    margin: 12px;
+}
+
+dialog.create button.reset img {
+    width: 15px;
+    opacity: 0.8;
+}
+
+dialog.create .sizebox {
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 5px;
+}
+
+dialog.create .action {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-bottom: 38px;
+}
+
+
+dialog.create .container {
+    display: flex;
+}
+
+
+dialog.create .sizebox select {
+    font-size: 20px;
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    height: 100%;
+    -webkit-appearance: auto;
+    appearance: auto;
+}
+
+dialog.create .sizebox input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc !important;
+    z-index: 1000;
+    font-size: 32px;
+    border-radius: 3px;
+}
+
+dialog.create button.create {
+    margin-top: 20px;
+    width: 90%;
+    padding: 16px;
+    text-align: center;
+    font-size: 24px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #d2d2d2;
+}
+
+@media screen and (max-width:392px) {
+    main {
+        width: 100%;
+        padding: 2px;
+    }
+
+    .sizebox {
+        width: calc(25vw - 5px);
+        height: calc(25vw - 5px);
+    }
+
+    .sizebox::before {
+        width: calc(25vw - 12px);
+        height: calc(25vw - 12px);
+    }
+
+    td .box {
+        width: calc(25vw - 12px);
+        height: calc(25vw - 12px);
+    }
+
+    .show-panel {
+        font-size: 82px;
+    }
+
+    table {
+        margin-bottom: 40px;
+    }
+}
+
+footer {
+    padding: 10px;
+    text-align: center;
+}
+
+button {
+    filter: brightness(100%);
+    transition: all 0.32s;
+}
+
+button:active {
+    filter: brightness(90%) !important;
+    transition: none !important;
+}

@@ -1,0 +1,352 @@
+.calc_progress {
+    opacity: 0.5;
+    font-size: 20px;
+    text-align: right;
+}
+
+dialog table {
+    position: relative;
+    margin: auto;
+    border-collapse: collapse;
+    margin-bottom: 47px;
+    transform-origin: center bottom;
+    transition: transform 0.39s cubic-bezier(0, .01, .36, 1.15);
+}
+
+dialog.clear table {
+    transform: scale(0.85) translateY(-180px);
+    pointer-events: none;
+}
+
+.show-panel span {
+    display: inline-block;
+}
+
+.show-panel span.addition-hide {
+    animation: addition-hide 0.1s ease-out forwards !important;
+}
+
+.show-panel span.addition-show {
+    animation: addition-show 0.1s ease-out forwards;
+}
+
+.show-panel span.reduction-hide {
+    animation: reduction-hide 0.1s ease-out forwards !important;
+}
+
+.show-panel span.reduction-show {
+    animation: reduction-show 0.1s ease-out forwards;
+}
+
+.fail {
+    animation: fail 0.7s ease-out forwards !important;
+}
+
+dialog.clear .show-panel {
+    opacity: 0;
+}
+
+button.next {
+    left: 50%;
+    transform: translateX(-50%) translateY(50px);
+    position: absolute;
+    bottom: 100px;
+    text-align: center;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 72px;
+    font-size: 20px;
+    border-radius: 12px;
+    background-color: #00000010;
+    opacity: 0;
+    transition: all .4s ease-in-out;
+    z-index: 0;
+    pointer-events: none;
+}
+
+button.next img {
+    width: 26px;
+    opacity: 0.7;
+}
+
+dialog.clear button.next {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0px);
+}
+
+@keyframes addition-hide {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(6px);
+        filter: blur(6px);
+        opacity: 0;
+    }
+}
+
+@keyframes addition-show {
+    0% {
+        transform: translateY(-6px);
+        filter: blur(6px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes reduction-hide {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-6px);
+        filter: blur(6px);
+        opacity: 0;
+    }
+}
+
+@keyframes reduction-show {
+    0% {
+        transform: translateY(6px);
+        filter: blur(6px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fail {
+    0% {
+        transform: translateX(0px);
+    }
+
+    10% {
+        transform: translateX(-16px);
+    }
+
+    22% {
+        transform: translateX(12px);
+    }
+
+    30% {
+        transform: translateX(-8px);
+    }
+
+    40% {
+        transform: translateX(7px);
+    }
+
+    50% {
+        transform: translateX(-0px);
+    }
+
+    100% {}
+}
+
+.show-panel {
+    flex-grow: 1;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    color: #575757;
+    text-wrap: nowrap;
+    overflow: hidden;
+    font-size: 86px;
+    font-weight: 300;
+    padding: 6px;
+    margin-bottom: 6px;
+    text-align: right;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes fadeout {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(4px);
+        filter: blur(2px);
+    }
+}
+
+.calc_progress p {
+    opacity: 0.7;
+    font-weight: 400;
+    font-size: 46px;
+    animation: fadeout 0.07s ease-in forwards;
+    animation-delay: 0.42s;
+}
+
+.calc_progress p.show {
+    animation: none;
+}
+
+
+p.box_text {
+    z-index: 1;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    letter-spacing: 0.02rem;
+    font-size: 29px;
+    color: #00000086;
+    opacity: 1;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+}
+
+td .box {
+    user-select: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 88px;
+    height: 88px;
+    background-color: white;
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+td.goal .box {
+    background-color: #d4d4d4;
+}
+
+td.start::after {
+    content: '';
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 40px;
+    background-color: #ff8000;
+}
+
+td.select .box {
+    background-color: #ff8000;
+}
+
+td.select::before {
+    box-shadow: none;
+}
+
+td.select p {
+    color: white;
+}
+
+td.enter {
+    background-color: #222;
+}
+
+@media screen and (max-width:392px) {
+    main {
+        width: 100%;
+        padding: 2px;
+    }
+
+    .sizebox {
+        width: calc(25vw - 5px);
+        height: calc(25vw - 5px);
+    }
+
+    .sizebox::before {
+        width: calc(25vw - 12px);
+        height: calc(25vw - 12px);
+    }
+
+    td .box {
+        width: calc(25vw - 12px);
+        height: calc(25vw - 12px);
+    }
+
+    .show-panel {
+        font-size: 82px;
+    }
+
+    table {
+        margin-bottom: 40px;
+    }
+}
+
+dialog.game .box-line {
+    position: absolute;
+    pointer-events: none;
+    background-color: #ff8000;
+}
+
+td.start.select::after {
+    content: '';
+    background-color: #ffffff !important;
+}
+
+.hint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.hint img {
+    position: absolute;
+    bottom: 270px;
+    margin-left: -260px;
+    width: 100px;
+    opacity: 0.7;
+    animation: moving 4s linear infinite;
+}
+
+@keyframes moving {
+    0% {
+        margin-left: -260px;
+    }
+
+    30% {
+        margin-left: -260px;
+    }
+
+    100% {
+        margin: 0;
+    }
+}
+
+.hint p {
+    position: absolute;
+    bottom: 30px;
+    font-size: 21px;
+    text-align: center;
+    line-height: normal;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: 1px solid #aaa;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Created Stage - マスmatics</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="js/stage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/rawinflate.js"></script>
+    <script src="js/index.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+
+<body>
+    <audio class="select" preload=”auto”>
+        <source src="sounds/select.mp3" type="audio/mp3">
+    </audio>
+    <audio class="fail" preload=”auto”>
+        <source src="sounds/fail.mp3" type="audio/mp3">
+    </audio>
+    <audio class="next" preload=”auto”>
+        <source src="sounds/next.mp3" type="audio/mp3">
+    </audio>
+    <dialog class="game">
+        <div class="action">
+            <div class="show-panel">
+                <div class="calc_progress">
+                </div>
+                <div class="calc_result">
+                    <span></span>
+                </div>
+            </div>
+            <table>
+                <tbody>
+                </tbody>
+            </table>
+            <button class="next" onclick="window.open('https://sukepc0824.github.io/masu-matics')">
+                <p>Play マスmatics</p>
+            </button>
+        </div>
+    </dialog>
+    <script src="js/index.js"></script>
+    <script>
+        // 圧縮関数 (要deflate.js)
+        function deflate(val) {
+            val = encodeURIComponent(val); // UTF16 → UTF8
+            val = RawDeflate.deflate(val); // 圧縮
+            val = btoa(val); // base64エンコード
+            return val;
+        }
+
+        // 復号関数 (要inflate.js)
+        function inflate(val) {
+            val = atob(val); // base64デコード
+            val = RawDeflate.inflate(val); // 復号
+            val = decodeURIComponent(val); // UTF8 → UTF16
+            return val;
+        }
+
+        const searchParams = new URLSearchParams(window.location.search)
+        try {
+            new Table(JSON.parse(inflate(searchParams.get('stage')))).create()
+        } catch (err) {
+            $("<p style='font-size:26px'>エラー! ステージが生成できません。URLが壊れている可能性があります。</p>").appendTo("body")
+        }
+
+    </script>
+</body>
+
+</html>
