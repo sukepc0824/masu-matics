@@ -10,6 +10,7 @@
     <script src="js/stage.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/rawinflate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
     <script src="js/index.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css" />
@@ -47,14 +48,6 @@
     </dialog>
     <script src="js/index.js"></script>
     <script>
-        // 圧縮関数 (要deflate.js)
-        function deflate(val) {
-            val = encodeURIComponent(val); // UTF16 → UTF8
-            val = RawDeflate.deflate(val); // 圧縮
-            val = btoa(val); // base64エンコード
-            return val;
-        }
-
         // 復号関数 (要inflate.js)
         function inflate(val) {
             val = atob(val); // base64デコード
@@ -62,14 +55,12 @@
             val = decodeURIComponent(val); // UTF8 → UTF16
             return val;
         }
-
         const searchParams = new URLSearchParams(window.location.search)
         try {
             new Table(JSON.parse(inflate(searchParams.get('stage')))).create()
         } catch (err) {
-            $("<p style='font-size:26px'>エラー! ステージが生成できません。URLが壊れている可能性があります。</p>").appendTo("body")
+            $(`<p style='font-size:26px'>エラー! ステージが生成できません。URLが壊れている可能性があります。</p>`).appendTo("body")
         }
-
     </script>
 </body>
 
